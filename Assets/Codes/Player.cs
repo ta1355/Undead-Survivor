@@ -1,16 +1,32 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    public Vector2 inputVector;
+
+    public Rigidbody2D rigid;
+
+    public float speed;
+
+
+    void Awake()
     {
-        
+        rigid = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        // 대각선 이동용
+        Vector2 nextVector = inputVector * speed * Time.fixedDeltaTime;
+
+        // 위치 이동
+        rigid.MovePosition(rigid.position + nextVector);
+    }
+
+    void OnMove(InputValue value)
+    {
+        inputVector = value.Get<Vector2>();
     }
 }
