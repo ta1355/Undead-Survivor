@@ -8,12 +8,19 @@ public class Player : MonoBehaviour
 
     public Rigidbody2D rigid;
 
-    public float speed;
+    float speed = 3.5f;
+
+    SpriteRenderer spriteRenderer;
+
+    Animator animator;
 
 
     void Awake()
     {
+        // 컴포넌트 초기화
         rigid = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -28,5 +35,17 @@ public class Player : MonoBehaviour
     void OnMove(InputValue value)
     {
         inputVector = value.Get<Vector2>();
+    }
+
+    void LateUpdate()
+    {
+        // 애니메이션 속도 설정정
+        // magnitude는 백터의 크기를 말함함
+        animator.SetFloat("Speed", inputVector.magnitude);
+        if (inputVector.x != 0)
+        {
+            // 방향 전환 양수 음수로 true false 
+            spriteRenderer.flipX = inputVector.x < 0;
+        }
     }
 }
