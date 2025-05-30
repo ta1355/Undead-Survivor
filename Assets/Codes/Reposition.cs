@@ -4,6 +4,14 @@ using UnityEngine;
 // todo : 무한맵 지금 약간 카메라가 따라오는게 늦음 음.. 어떻게 해야 할까 좀 더 고민해봐야 할 듯
 public class Reposition : MonoBehaviour
 {
+
+    Collider2D coll;
+
+    void Awake()
+    {
+        coll = GetComponent<Collider2D>();
+    }
+
     void OnTriggerExit2D(Collider2D collision)
     {
         if (!collision.CompareTag("Area"))
@@ -31,7 +39,10 @@ public class Reposition : MonoBehaviour
                 }
                 break;
             case "Enemy":
-
+                if (coll.enabled)
+                { 
+                     transform.Translate(playerDir * 20 + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0));
+                }
                 break;
         }
     }
