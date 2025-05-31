@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
-         
+
         // 플레이어의 키 입력 값을 더한 이동 == 몬스터의 방향 값을 더한 이동
         Vector2 dirVec = target.position - rigid.position;
         Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
@@ -43,5 +43,10 @@ public class Enemy : MonoBehaviour
         }
 
         spriter.flipX = target.position.x < rigid.position.x;
+    }
+
+    void OnEnable()
+    {
+        target = GameManager.instance.player.GetComponent<Rigidbody2D>();
     }
 }
