@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 109
+  controlID: 111
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -80,7 +80,7 @@ MonoBehaviour:
   - {fileID: 14}
   - {fileID: 12}
   m_Selected: 0
-  m_LastSelected: 4
+  m_LastSelected: 1
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -475,7 +475,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -1826
+  m_LastSelectedObjectID: -11176
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1261,7 +1261,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Undead Survivor/Prefabs
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1271,16 +1271,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Undead Survivor/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\tt13\Undead-Survivor
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 2}
-    m_SelectedIDs: 26970000
-    m_LastClickedID: 38694
-    m_ExpandedIDs: 000000001a9800001c9800001e980000
+    scrollPos: {x: 0, y: 18}
+    m_SelectedIDs: 9e980000
+    m_LastClickedID: 39070
+    m_ExpandedIDs: 00000000b2970000b4970000b6970000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1309,7 +1309,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001a9800001c9800001e980000
+    m_ExpandedIDs: 00000000b2970000b4970000b6970000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1457,7 +1457,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 0cfbffff30960000
+      m_ExpandedIDs: 0cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -2061,9 +2061,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -3.9114568, y: 2.4668028, z: -0.02574492}
+    m_Target: {x: -5.3553166, y: 3.726842, z: -0.048265982}
     speed: 2
-    m_Value: {x: -3.9114568, y: 2.4668028, z: -0.02574492}
+    m_Value: {x: -5.3553166, y: 3.726842, z: -0.048265982}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -2113,9 +2113,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 12.574776
+    m_Target: 14.826931
     speed: 2
-    m_Value: 12.574776
+    m_Value: 14.826931
   m_Ortho:
     m_Target: 1
     speed: 2
