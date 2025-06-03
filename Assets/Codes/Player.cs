@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
 
     Animator animator;
 
+    public Scanner scanner;
+
 
     void Awake()
     {
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        scanner = GetComponent<Scanner>();
     }
 
     void FixedUpdate()
