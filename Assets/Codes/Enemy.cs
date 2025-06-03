@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -21,18 +22,21 @@ public class Enemy : MonoBehaviour
 
     SpriteRenderer spriter;
 
+    WaitForFixedUpdate wait;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriter = GetComponent<SpriteRenderer>();
+        wait = new WaitForFixedUpdate();
     }
 
 
     void FixedUpdate()
     {
 
-        if (!isLive)
+        if (!isLive || animator.GetCurrentAnimatorStateInfo(0).IsName("Hit"))  // GetCurrentAnimatorStateInfo : 현재 에니메이션 상태
         {
             return;
         }
@@ -84,14 +88,28 @@ public class Enemy : MonoBehaviour
 
         health -= collision.GetComponent<Bullet>().damage;
 
+        // getcurrentAnimatorstatelnfo : 현재 상태 정보를 가져오는 함수
+        StartCoroutine(KnockBack());
+
         if (health > 0)
         {
-
+            animator.SetTrigger("Hit");
         }
         else
         {
             Dead();
         }
+    }
+
+    IEnumerator KnockBack()
+    {
+        yield return wait;    // 다음 물리 프레임 딜레이
+
+        Vector3 playerPos = GameManager.instance.player.transform.position;
+
+        Vector3 dirVec = transform.position - playerPos;
+
+        rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
     }
 
     void Dead()
