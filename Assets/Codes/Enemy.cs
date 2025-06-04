@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
 
     Rigidbody2D rigid;
 
+    Collider2D coll;
+
     Animator animator;
 
     SpriteRenderer spriter;
@@ -30,6 +32,7 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         spriter = GetComponent<SpriteRenderer>();
         wait = new WaitForFixedUpdate();
+        coll = GetComponent<Collider2D>();
     }
 
 
@@ -66,6 +69,14 @@ public class Enemy : MonoBehaviour
         isLive = true;
 
         health = maxHealth;
+
+        coll.enabled = true;  // 활성화
+
+        rigid.simulated = true;
+
+        spriter.sortingOrder = 2;  // 레이어 순서 
+
+        animator.SetBool("Dead", false);
     }
 
     public void Init(SpawnData data)
@@ -81,7 +92,7 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Bullet"))
+        if (!collision.CompareTag("Bullet") || !isLive)
         {
             return;
         }
@@ -97,7 +108,20 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            Dead();
+            isLive = false;
+
+            coll.enabled = false;  // 비활성화
+
+            rigid.simulated = false;
+
+            spriter.sortingOrder = 1;  // 레이어 순서 내림 
+
+            animator.SetBool("Dead", true);
+
+            GameManager.instance.kill++;
+            GameManager.instance.GetExp();
+
+            // Dead();
         }
     }
 
