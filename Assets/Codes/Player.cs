@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 
     public Rigidbody2D rigid;
 
-    float speed = 3.5f;
+    public float speed = 3.5f;
 
     SpriteRenderer spriteRenderer;
 

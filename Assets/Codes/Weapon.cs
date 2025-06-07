@@ -11,26 +11,11 @@ public class Weapon : MonoBehaviour
 
     Player player;
 
-    void Awake()
-    {
-        player = GetComponentInParent<Player>();
-    }
-
-    private Transform bulletRotator;
-
     float timer;
 
-    void Start()
+    void Awake()
     {
-        // 플레이어 위치에 무기를 고정
-        transform.position = GameManager.instance.player.transform.position;
-
-        // 회전용 빈 오브젝트 생성
-        bulletRotator = new GameObject("BulletRotator").transform;
-        bulletRotator.parent = transform;
-        bulletRotator.localPosition = Vector3.zero;
-
-        Init();
+        player = GameManager.instance.player;
     }
 
     void Update()
@@ -38,8 +23,8 @@ public class Weapon : MonoBehaviour
         switch (id)
         {
             case 0:
-                // Weapon이 아니라 BulletRotator만 회전
-                bulletRotator.Rotate(Vector3.back * speed * Time.deltaTime);
+                //
+                transform.Rotate(Vector3.back * speed * Time.deltaTime);
                 break;
             default:
                 timer += Time.deltaTime;
@@ -71,21 +56,46 @@ public class Weapon : MonoBehaviour
         {
             Batch();
         }
+
+        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
 
-    public void Init()
+    public void Init(ItemData data)
     {
+        name = "Weapon " + data.itemId;
+
+        transform.parent = player.transform;
+
+        transform.localPosition = Vector3.zero;
+
+        id = data.itemId;
+
+        damage = data.baseDamage;
+
+        count = data.baseCount;
+
+        for (int i = 0; i < GameManager.instance.pool.prefabs.Length; i++)
+        {
+            if (data.projectile == GameManager.instance.pool.prefabs[i])
+            {
+                prefabId = i;
+                break;
+            }
+        }
+
         switch (id)
         {
-            // 근접무기
             case 0:
                 speed = 150;
                 Batch();
                 break;
             default:
-                speed = 0.3f;
+                speed = 0.4f;
                 break;
         }
+
+        // broadcastMessage: 특정 함수 호출을 모든 자식에게 방송하는 함수
+        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
 
     void Batch()
@@ -94,15 +104,15 @@ public class Weapon : MonoBehaviour
         {
             Transform bullet;
 
-            if (i < bulletRotator.childCount)
+            if (i < transform.childCount)
             {
-                bullet = bulletRotator.GetChild(i);
+                bullet = transform.GetChild(i);
                 bullet.gameObject.SetActive(true); // 재사용 시 비활성화 상태면 다시 켜기
             }
             else
             {
                 bullet = GameManager.instance.pool.GetObject(prefabId).transform;
-                bullet.parent = bulletRotator;
+                bullet.parent = transform;
             }
 
             bullet.localPosition = Vector3.zero;
@@ -116,9 +126,9 @@ public class Weapon : MonoBehaviour
         }
 
         // 🔧 수정: 남은 총알 비활성화 (LevelUp 시 총알 수 감소 대비)
-        for (int i = count; i < bulletRotator.childCount; i++)
+        for (int i = count; i < transform.childCount; i++)
         {
-            bulletRotator.GetChild(i).gameObject.SetActive(false);
+            transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 
