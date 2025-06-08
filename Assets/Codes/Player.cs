@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     public Scanner scanner;
 
+    public Hand[] hands;
+
 
     void Awake()
     {
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
+        hands = GetComponentsInChildren<Hand>(true); // true는 비활성화된 오브젝트도 포함해서 찾음
     }
 
     void FixedUpdate()

@@ -1,8 +1,9 @@
 using UnityEngine;
-[CreateAssetMenu(fileName = "Item", menuName ="Scriptable Objects/ItemData")]
+[CreateAssetMenu(fileName = "Item", menuName = "Scriptable Objects/ItemData")]
 public class ItemData : ScriptableObject
 {
-    public enum ItemType {
+    public enum ItemType
+    {
         Melee, Range, Glove, Shoe, Heal
     }
 
@@ -24,4 +25,6 @@ public class ItemData : ScriptableObject
 
     [Header("# Weapon")]
     public GameObject projectile;
+
+    public Sprite hand;
 }

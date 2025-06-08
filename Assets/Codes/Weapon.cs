@@ -94,6 +94,12 @@ public class Weapon : MonoBehaviour
                 break;
         }
 
+        // hand
+
+        Hand hand = player.hands[(int)data.itemType];
+        hand.spriter.sprite = data.hand;
+        hand.gameObject.SetActive(true);
+
         // broadcastMessage: 특정 함수 호출을 모든 자식에게 방송하는 함수
         player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
