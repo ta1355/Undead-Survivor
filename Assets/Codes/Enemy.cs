@@ -38,6 +38,10 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameManager.instance.isLive == false)
+        {
+            return;
+        }
 
         if (!isLive || animator.GetCurrentAnimatorStateInfo(0).IsName("Hit"))  // GetCurrentAnimatorStateInfo : 현재 에니메이션 상태
         {
@@ -54,6 +58,10 @@ public class Enemy : MonoBehaviour
 
     void LateUpdate()
     {
+        if (GameManager.instance.isLive == false)
+        {
+            return;
+        }
         if (!isLive)
         {
             return;
