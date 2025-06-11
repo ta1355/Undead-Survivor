@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     public Hand[] hands;
 
+    public RuntimeAnimatorController[] animCon;
 
     void Awake()
     {
@@ -27,6 +28,12 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
         hands = GetComponentsInChildren<Hand>(true); // true는 비활성화된 오브젝트도 포함해서 찾음
+    }
+
+    void OnEnable()
+    {
+        speed *= Character.Speed;
+        animator.runtimeAnimatorController = animCon[GameManager.instance.playerId];
     }
 
     void Update()
