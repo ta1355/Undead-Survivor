@@ -101,6 +101,7 @@ public class Item : MonoBehaviour
     {
         GetComponent<Button>().interactable = false;
     }
+    
 }
 
 }

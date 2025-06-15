@@ -54,7 +54,7 @@ public class Weapon : MonoBehaviour
     public void LevelUp(float damage, int count)
     {
         this.damage = damage * Character.Damage;
-        this.count = count * Character.Count;
+        this.count = count + Character.Count ;
 
         if (id == 0)
         {
