@@ -7,12 +7,15 @@ public class Spawner : MonoBehaviour
 
     public SpawnData[] spawnData;
 
+    public float levelTime;
+
     int level;
     float timer;
 
     void Awake()
     {
         spawnPoint = GetComponentsInChildren<Transform>();
+        levelTime = GameManager.instance.maxGameTime / spawnData.Length;
     }
 
     void Update()
@@ -22,13 +25,20 @@ public class Spawner : MonoBehaviour
             return;
         }
         timer += Time.deltaTime;
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f), spawnData.Length - 1) ;
+        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / levelTime), spawnData.Length - 1);
+
+        // 270초(4분 30초)부터는 강제로 마지막 적 등장(5분으로 잡은 기준으로 만약 다른 시간이라면 변경해야 함)
+        if (GameManager.instance.gameTime >= 270f)
+        {
+            level = spawnData.Length - 1;  // 마지막 데이터 (spriteType 3)
+        }
 
         if (timer > spawnData[level].spawnTime)
         {
             timer = 0;
             Spawn();
         }
+        
     }
 
     void Spawn()

@@ -132,7 +132,7 @@ public class Weapon : MonoBehaviour
             bullet.Rotate(Vector3.forward * angle);
             bullet.Translate(Vector3.up * 1.5f, Space.Self);
 
-            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero);
+            bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero); // -100은 무한 발사 (per: 남은 총알 수)
         }
 
         // 🔧 수정: 남은 총알 비활성화 (LevelUp 시 총알 수 감소 대비)
